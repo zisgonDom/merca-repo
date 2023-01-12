@@ -7,11 +7,13 @@ import org.hibernate.Hibernate;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Setter
 @Getter
+@Setter
 @Entity
 @Table(name = "USERS")
 public class User implements Serializable {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -27,9 +29,9 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(){
-
+    public User() {
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

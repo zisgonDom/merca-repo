@@ -1,5 +1,6 @@
 package com.merca.project.mercaproject.service.user;
 
+import com.merca.project.mercaproject.model.Product;
 import com.merca.project.mercaproject.model.User;
 import com.merca.project.mercaproject.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class UserServiceImpl implements UserService{
     public List<User> getUsers() {
         return (List<User>) userRepository.findAll();
     }
+
 
     @Override
     @Transactional(readOnly = true)
