@@ -20,6 +20,14 @@ public class Role implements Serializable {
 
     private String type;
 
+    public Role(Long id, String type) {
+        this.id = id;
+        this.type = type;
+    }
+
+    public Role() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,6 +1,5 @@
-package com.merca.project.mercaproject.controller.product.user;
+package com.merca.project.mercaproject.controller.user;
 
-import com.merca.project.mercaproject.model.Product;
 import com.merca.project.mercaproject.model.User;
 import com.merca.project.mercaproject.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import java.util.List;
 
 @RestController
 
-public class UserController {
+public class UserGetController {
 
     @Autowired
     private UserService userService;

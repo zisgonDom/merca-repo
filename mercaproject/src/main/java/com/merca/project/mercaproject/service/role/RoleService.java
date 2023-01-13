@@ -1,4 +1,4 @@
-package com.merca.project.mercaproject.service;
+package com.merca.project.mercaproject.service.role;
 
 import com.merca.project.mercaproject.model.Role;
 

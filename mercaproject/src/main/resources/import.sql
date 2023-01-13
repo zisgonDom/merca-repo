@@ -8,7 +8,7 @@ INSERT INTO products (name, description, ean, price) VALUES ('Guantes', 'Guantes
 INSERT INTO products (name, description, ean, price) VALUES ('Bebida soja', 'Bebida de soja', 8000001100000, 2.65);
 
 
-INSERT INTO users (name, email, password) VALUES ('Carlos', 'carlos.dom@email.com','carlos_mercadona');
+INSERT INTO users (name, email, password) VALUES ('Carlos', 'carlos.dom@email.com','$2a$10$idFk4NceecrTlTqu68KrYe8XxiB6fYIM72c1aOgV0W/IFFHm0b4T2');
 INSERT INTO users (name, email, password) VALUES ('Mercadona', 'mercadona@email.com','mercadona');
 
 INSERT INTO roles (type) VALUES ('USER_ROLE');

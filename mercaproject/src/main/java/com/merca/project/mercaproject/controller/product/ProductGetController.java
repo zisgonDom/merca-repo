@@ -1,4 +1,4 @@
-package com.merca.project.mercaproject.controller.product.product;
+package com.merca.project.mercaproject.controller.product;
 
 import com.merca.project.mercaproject.model.Product;
 import com.merca.project.mercaproject.service.product.ProductService;
