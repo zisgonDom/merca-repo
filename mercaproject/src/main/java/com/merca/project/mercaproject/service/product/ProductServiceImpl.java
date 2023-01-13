@@ -18,13 +18,11 @@ public class ProductServiceImpl implements ProductService{
     public Product getProductByEAN(Long EAN) {
         return productRepository.findByEAN(String.valueOf(EAN));
     }
-
     @Override
     @Transactional(readOnly = true)
     public List<Product> getProducts() {
         return (List<Product>) productRepository.findAll();
     }
-
     @Override
     public Product findById(Long id) {
         return productRepository.findById(id).orElse(null);

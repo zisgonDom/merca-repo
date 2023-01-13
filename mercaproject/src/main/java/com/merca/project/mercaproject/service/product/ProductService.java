@@ -8,7 +8,7 @@ public interface ProductService {
 
     public Product getProductByEAN(Long EAN);
     List<Product> getProducts();
-
     Product findById(Long id);
+
 
 }

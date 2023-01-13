@@ -28,7 +28,6 @@ public class ProductGetController {
 
     @GetMapping("/getProduct/{ean}")
     public ResponseEntity<Product> getProduct(@PathVariable Long ean){
-
         Product product = productService.getProductByEAN(ean);
         if(product != null){
             return new ResponseEntity<>(productService.getProductByEAN(ean), HttpStatus.OK);
