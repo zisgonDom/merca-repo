@@ -3,6 +3,7 @@ package com.merca.project.mercaproject.service.product;
 import com.merca.project.mercaproject.entity.ProductEntity;
 import com.merca.project.mercaproject.exceptions.DescriptionException;
 import com.merca.project.mercaproject.exceptions.ProductExistsException;
+import com.merca.project.mercaproject.exceptions.ProductIsNullException;
 import com.merca.project.mercaproject.mapper.ProductCreate;
 import com.merca.project.mercaproject.mapper.ProductEdit;
 import com.merca.project.mercaproject.mapper.ProductMapper;
@@ -25,6 +26,9 @@ public class ProductServiceImpl implements ProductService{
     @Transactional(readOnly = true)
     public ProductResponse getProductByEAN(Long EAN) {
         ProductEntity productEntity = productRepository.findByEAN(String.valueOf(EAN));
+        if(productEntity == null){
+            throw new ProductIsNullException("There are no product with EAN: " + EAN);
+        }
         return ProductMapper.toProductResponse(productEntity);
     }
     @Override
@@ -32,6 +36,9 @@ public class ProductServiceImpl implements ProductService{
     public List<ProductResponse> getProducts() {
         List<ProductEntity> productEntityList = (List<ProductEntity>) productRepository.findAll();
         List<ProductResponse> productResponseList = new ArrayList<>();
+        if(productEntityList.isEmpty()){
+            throw new ProductIsNullException("No products in the database");
+        }
         for(ProductEntity productEntity : productEntityList){
             productResponseList.add(ProductMapper.toProductResponse(productEntity));
         }
@@ -45,7 +52,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     @Transactional
-    public ProductResponse createProduct(ProductCreate productCreate) throws DescriptionException {
+    public ProductResponse createProduct(ProductCreate productCreate) {
 
         MyProduct myProduct = ProductMapper.toMyProduct(productCreate);
         ProductEntity productEntity = ProductMapper.toEntity(myProduct);
@@ -58,9 +65,12 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductResponse editProduct(ProductEdit productEdit) throws DescriptionException {
-        ProductEntity productEntity = productRepository.findByEAN(productEdit.getEAN().toString());
+        MyProduct myProduct = ProductMapper.toMyProduct(productEdit);
+        ProductEntity productEntity = productRepository.findByEAN(myProduct.getEAN().toString());
         ProductResponse productResponse = new ProductResponse();
-        if(productEntity != null){
+        if(productEntity == null) {
+            throw new ProductIsNullException("There is no products with EAN: " + productEdit.getEAN());
+        }else {
             productEntity.setDescription(productEdit.getDescription());
             productEntity.setName(productEdit.getName());
             productEntity.setPrice(productEdit.getPrice());
@@ -75,7 +85,9 @@ public class ProductServiceImpl implements ProductService{
     public ProductResponse deleteProduct(Long EAN) {
         ProductEntity productEntity = productRepository.findByEAN(EAN.toString());
         ProductResponse productResponse = null;
-        if(productEntity != null){
+        if(productEntity == null) {
+            throw new ProductIsNullException("There is no products with EAN: " + EAN);
+        }else {
             productResponse = ProductMapper.toProductResponse(productEntity);
             productRepository.delete(productEntity);
             if(productRepository.findByEAN(productResponse.getEAN().toString()) != null){

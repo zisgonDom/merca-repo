@@ -28,7 +28,7 @@ public class ProductMapper {
                 takeProductCode(productEntity.getEAN()));
     }
 
-    public static MyProduct toMyProduct(ProductCreate productCreate) throws DescriptionException {
+    public static MyProduct toMyProduct(ProductCreate productCreate) {
         return new MyProduct.MyProductBuilder()
                 .withDescription(productCreate.getDescription())
                 .withEAN(productCreate.getEAN())
@@ -40,12 +40,15 @@ public class ProductMapper {
                 .build();
     }
 
-    public static MyProduct toMyProduct(ProductEdit productEdit) throws DescriptionException {
+    public static MyProduct toMyProduct(ProductEdit productEdit){
         return new MyProduct.MyProductBuilder()
                 .withDescription(productEdit.getDescription())
                 .withName(productEdit.getName())
                 .withPrice(productEdit.getPrice())
                 .withEAN(productEdit.getEAN())
+                .withProductCode(takeProductCode(productEdit.getEAN()))
+                .withSupplier(takeSupplier(productEdit.getEAN()))
+                .withDestination(takeDestination(productEdit.getEAN()))
                 .build();
     }
 

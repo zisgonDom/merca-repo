@@ -1,8 +1,10 @@
 package com.merca.project.mercaproject.exceptions;
 
+import jakarta.persistence.PersistenceException;
+
 import java.io.Serial;
 
-public class DescriptionException extends Exception{
+public class DescriptionException extends PersistenceException {
 
 	
 	@Serial

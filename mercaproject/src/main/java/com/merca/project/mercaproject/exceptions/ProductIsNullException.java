@@ -12,5 +12,7 @@ public class ProductIsNullException extends NullPointerException{
 		super();
 	}
 
-	
+	public ProductIsNullException(String s) {
+		super(s);
+	}
 }
