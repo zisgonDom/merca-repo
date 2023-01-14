@@ -11,7 +11,10 @@ public class ProductExistsException extends PersistenceException{
 	private static final long serialVersionUID = 2665287825112530476L;
 
 	public ProductExistsException() {
-		super("EAN alredy exists");
+		super();
 	}
 
+	public ProductExistsException(String message) {
+		super(message);
+	}
 }

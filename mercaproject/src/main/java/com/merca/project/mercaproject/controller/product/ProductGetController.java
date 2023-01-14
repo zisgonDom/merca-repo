@@ -1,6 +1,5 @@
 package com.merca.project.mercaproject.controller.product;
 
-import com.merca.project.mercaproject.entity.ProductEntity;
 import com.merca.project.mercaproject.mapper.ProductResponse;
 import com.merca.project.mercaproject.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

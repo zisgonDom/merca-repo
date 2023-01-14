@@ -2,6 +2,7 @@ package com.merca.project.mercaproject.service.product;
 
 import com.merca.project.mercaproject.entity.ProductEntity;
 import com.merca.project.mercaproject.exceptions.DescriptionException;
+import com.merca.project.mercaproject.exceptions.ProductExistsException;
 import com.merca.project.mercaproject.mapper.ProductCreate;
 import com.merca.project.mercaproject.mapper.ProductEdit;
 import com.merca.project.mercaproject.mapper.ProductMapper;
@@ -48,6 +49,9 @@ public class ProductServiceImpl implements ProductService{
 
         MyProduct myProduct = ProductMapper.toMyProduct(productCreate);
         ProductEntity productEntity = ProductMapper.toEntity(myProduct);
+        if(productRepository.findByEAN(productEntity.getEAN().toString()) != null){
+            throw new ProductExistsException("A product with EAN: " + productEntity.getEAN() + " alredy exists");
+        }
         productRepository.save(productEntity);
         return ProductMapper.toProductResponse(productRepository.findById(productEntity.getId()).orElse(null));
     }
