@@ -60,7 +60,7 @@ public class MyProduct {
         }
 
 
-        public MyProduct build() throws DescriptionException, ShortEANException {
+        public MyProduct build() throws DescriptionException {
             //Validate
             if(this.product == null){
                 throw new ProductIsNullException();

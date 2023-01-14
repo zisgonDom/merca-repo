@@ -28,7 +28,7 @@ public class ProductMapper {
                 takeProductCode(productEntity.getEAN()));
     }
 
-    public static MyProduct toMyProduct(ProductCreate productCreate) throws ProductEANException, DescriptionException, ShortEANException {
+    public static MyProduct toMyProduct(ProductCreate productCreate) throws DescriptionException {
         return new MyProduct.MyProductBuilder()
                 .withDescription(productCreate.getDescription())
                 .withEAN(productCreate.getEAN())
