@@ -1,6 +1,8 @@
 package com.merca.project.mercaproject.service.product;
 
 import com.merca.project.mercaproject.entity.ProductEntity;
+import com.merca.project.mercaproject.exceptions.DescriptionException;
+import com.merca.project.mercaproject.mapper.ProductCreate;
 import com.merca.project.mercaproject.mapper.ProductMapper;
 import com.merca.project.mercaproject.mapper.ProductResponse;
 import com.merca.project.mercaproject.model.MyProduct;
@@ -39,7 +41,15 @@ public class ProductServiceImpl implements ProductService{
         return productRepository.findById(id).orElse(null);
     }
 
+    @Override
+    @Transactional
+    public ProductResponse createProduct(ProductCreate productCreate) throws DescriptionException {
 
+        MyProduct myProduct = ProductMapper.toMyProduct(productCreate);
+        ProductEntity productEntity = ProductMapper.toEntity(myProduct);
+        productRepository.save(productEntity);
+        return ProductMapper.toProductResponse(productRepository.findById(productEntity.getId()).orElse(null));
+    }
 
 
 }

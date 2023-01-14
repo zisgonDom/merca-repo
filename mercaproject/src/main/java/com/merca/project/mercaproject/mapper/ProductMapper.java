@@ -34,6 +34,9 @@ public class ProductMapper {
                 .withEAN(productCreate.getEAN())
                 .withName(productCreate.getName())
                 .withPrice(productCreate.getPrice())
+                .withProductCode(takeProductCode(productCreate.getEAN()))
+                .withSupplier(takeSupplier(productCreate.getEAN()))
+                .withDestination(takeDestination(productCreate.getEAN()))
                 .build();
     }
 

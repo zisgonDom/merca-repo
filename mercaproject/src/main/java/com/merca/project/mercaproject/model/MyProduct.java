@@ -59,8 +59,22 @@ public class MyProduct {
             return this;
         }
 
+        public MyProductBuilder withProductCode(Long productCode){
+            product.productCode = productCode;
+            return this;
+        }
 
-        public MyProduct build() throws DescriptionException {
+        public MyProductBuilder withDestination(int destination){
+            product.destination = destination;
+            return this;
+        }
+        public MyProductBuilder withSupplier(Long supplier){
+            product.supplier = supplier;
+            return this;
+        }
+
+
+        public MyProduct build() throws DescriptionException, EANException, ProductIsNullException {
             //Validate
             if(this.product == null){
                 throw new ProductIsNullException();
