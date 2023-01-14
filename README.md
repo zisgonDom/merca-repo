@@ -14,6 +14,6 @@
 #pruebas unitarias para cada método del Service y pruebas sobre la API mediante POSTMAN.
 
 #Para realizar las pruebas sobre la API-REST,
-#se debera importar el archivo < > 
+#se debera importar el archivo 'Juego de pruebas - MERCADONA.postman_collection.json' 
 #ya que se ha implementado un factor de seguridad mediante JWT,
 #se debera ejecutar la primera petición para poder recibir el JwtToken y así incorporarlo en las demas peticiones.
