@@ -10,7 +10,7 @@
  #por ejemplo
     - server.port=9001
 
-#Este proyecto consta de una API-REST, operaciones CRUD,así colo tambien,
+#Este proyecto consta de una API-REST, operaciones CRUD,así como tambien,
 #pruebas unitarias para cada método del Service y pruebas sobre la API mediante POSTMAN.
 
 #Para realizar las pruebas sobre la API-REST,
