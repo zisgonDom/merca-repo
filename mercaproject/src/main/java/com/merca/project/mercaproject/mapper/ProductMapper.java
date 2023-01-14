@@ -40,6 +40,15 @@ public class ProductMapper {
                 .build();
     }
 
+    public static MyProduct toMyProduct(ProductEdit productEdit) throws DescriptionException {
+        return new MyProduct.MyProductBuilder()
+                .withDescription(productEdit.getDescription())
+                .withName(productEdit.getName())
+                .withPrice(productEdit.getPrice())
+                .withEAN(productEdit.getEAN())
+                .build();
+    }
+
 
     public static Long takeSupplier(Long ean) {
 

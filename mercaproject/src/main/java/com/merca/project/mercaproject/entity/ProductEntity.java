@@ -21,6 +21,7 @@ public class ProductEntity implements Serializable {
 
     private String name;
     private String description;
+    @Column(name = "EAN", unique = true)
     private Long EAN;
     private Double price;
 

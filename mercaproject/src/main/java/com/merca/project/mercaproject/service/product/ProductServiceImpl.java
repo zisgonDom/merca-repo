@@ -3,6 +3,7 @@ package com.merca.project.mercaproject.service.product;
 import com.merca.project.mercaproject.entity.ProductEntity;
 import com.merca.project.mercaproject.exceptions.DescriptionException;
 import com.merca.project.mercaproject.mapper.ProductCreate;
+import com.merca.project.mercaproject.mapper.ProductEdit;
 import com.merca.project.mercaproject.mapper.ProductMapper;
 import com.merca.project.mercaproject.mapper.ProductResponse;
 import com.merca.project.mercaproject.model.MyProduct;
@@ -49,6 +50,35 @@ public class ProductServiceImpl implements ProductService{
         ProductEntity productEntity = ProductMapper.toEntity(myProduct);
         productRepository.save(productEntity);
         return ProductMapper.toProductResponse(productRepository.findById(productEntity.getId()).orElse(null));
+    }
+
+    @Override
+    public ProductResponse editProduct(ProductEdit productEdit) throws DescriptionException {
+        ProductEntity productEntity = productRepository.findByEAN(productEdit.getEAN().toString());
+        ProductResponse productResponse = new ProductResponse();
+        if(productEntity != null){
+            productEntity.setDescription(productEdit.getDescription());
+            productEntity.setName(productEdit.getName());
+            productEntity.setPrice(productEdit.getPrice());
+            productEntity.setEAN(productEdit.getEAN());
+            productResponse = ProductMapper.toProductResponse(productEntity);
+        }
+        return productResponse;
+    }
+
+    @Override
+    @Transactional
+    public ProductResponse deleteProduct(Long EAN) {
+        ProductEntity productEntity = productRepository.findByEAN(EAN.toString());
+        ProductResponse productResponse = null;
+        if(productEntity != null){
+            productResponse = ProductMapper.toProductResponse(productEntity);
+            productRepository.delete(productEntity);
+            if(productRepository.findByEAN(productResponse.getEAN().toString()) != null){
+                productResponse = null;
+            }
+        }
+        return productResponse;
     }
 
 
