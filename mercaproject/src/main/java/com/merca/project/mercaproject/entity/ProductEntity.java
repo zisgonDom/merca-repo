@@ -1,4 +1,4 @@
-package com.merca.project.mercaproject.model;
+package com.merca.project.mercaproject.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,8 +10,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "USERS")
-public class User implements Serializable {
+@Table(name = "PRODUCTS")
+public class ProductEntity implements Serializable {
 
 
     @Id
@@ -20,24 +20,26 @@ public class User implements Serializable {
     private Long id;
 
     private String name;
-    private String email;
-    private String password;
+    private String description;
+    private Long EAN;
+    private Double price;
 
-    public User(String name, String email, String password) {
+    public ProductEntity(String name, String description, Long EAN, Double price) {
         this.name = name;
-        this.email = email;
-        this.password = password;
+        this.description = description;
+        this.EAN = EAN;
+        this.price = price;
     }
 
-    public User() {
+    public ProductEntity() {
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        User user = (User) o;
-        return id != null && Objects.equals(id, user.id);
+        ProductEntity productEntity = (ProductEntity) o;
+        return id != null && Objects.equals(id, productEntity.id);
     }
 
     @Override

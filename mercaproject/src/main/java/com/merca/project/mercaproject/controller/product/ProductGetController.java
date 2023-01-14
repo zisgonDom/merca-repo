@@ -1,6 +1,7 @@
 package com.merca.project.mercaproject.controller.product;
 
-import com.merca.project.mercaproject.model.Product;
+import com.merca.project.mercaproject.entity.ProductEntity;
+import com.merca.project.mercaproject.mapper.ProductResponse;
 import com.merca.project.mercaproject.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,19 +19,19 @@ public class ProductGetController {
     private ProductService productService;
 
     @GetMapping("/listProducts")
-    public ResponseEntity<List<Product>> list(){
-        List<Product> productList = productService.getProducts();
-        if(!productList.isEmpty()){
-            return new ResponseEntity<>(productList,HttpStatus.OK);
+    public ResponseEntity<List<ProductResponse>> list(){
+        List<ProductResponse> productResponseList = productService.getProducts();
+        if(!productResponseList.isEmpty()){
+            return new ResponseEntity<>(productResponseList,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/getProduct/{ean}")
-    public ResponseEntity<Product> getProduct(@PathVariable Long ean){
-        Product product = productService.getProductByEAN(ean);
-        if(product != null){
-            return new ResponseEntity<>(productService.getProductByEAN(ean), HttpStatus.OK);
+    public ResponseEntity<ProductResponse> getProduct(@PathVariable Long ean){
+        ProductResponse productResponse = productService.getProductByEAN(ean);
+        if(productResponse != null){
+            return new ResponseEntity<>(productResponse, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

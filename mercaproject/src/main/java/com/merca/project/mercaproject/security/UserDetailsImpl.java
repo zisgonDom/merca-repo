@@ -1,6 +1,6 @@
 package com.merca.project.mercaproject.security;
 
-import com.merca.project.mercaproject.model.User;
+import com.merca.project.mercaproject.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +11,7 @@ import java.util.Collections;
 @AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
-    private final User user;
+    private final UserEntity userEntity;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -20,12 +20,12 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return userEntity.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return userEntity.getEmail();
     }
 
     @Override
@@ -49,6 +49,6 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     public String getNombre(){
-        return user.getName();
+        return userEntity.getName();
     }
 }

@@ -1,6 +1,6 @@
 package com.merca.project.mercaproject.controller.user;
 
-import com.merca.project.mercaproject.model.User;
+import com.merca.project.mercaproject.entity.UserEntity;
 import com.merca.project.mercaproject.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,19 +19,19 @@ public class UserGetController {
     private UserService userService;
 
     @GetMapping("/listUsers")
-    public ResponseEntity<List<User>> list(){
-        List<User> userList = userService.getUsers();
-        if(!userList.isEmpty()){
-            return new ResponseEntity<>(userList, HttpStatus.OK);
+    public ResponseEntity<List<UserEntity>> list(){
+        List<UserEntity> userEntityList = userService.getUsers();
+        if(!userEntityList.isEmpty()){
+            return new ResponseEntity<>(userEntityList, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/findUser/{id}")
-    public ResponseEntity<User> findUser(@PathVariable Long id){
-        User user = userService.findById(id);
-        if(user != null){
-            return new ResponseEntity<>(user, HttpStatus.OK);
+    public ResponseEntity<UserEntity> findUser(@PathVariable Long id){
+        UserEntity userEntity = userService.findById(id);
+        if(userEntity != null){
+            return new ResponseEntity<>(userEntity, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
