@@ -1,13 +1,14 @@
 {
 	"info": {
-		"_postman_id": "1860fdaf-389d-4e70-8cd2-a541c0512bac",
+		"_postman_id": "58e6c9b4-80e2-44dc-9046-cfd84f84cf36",
 		"name": "Juego de pruebas - MERCADONA",
+		"description": "Colección de pruebas.\n\nPara cada prueba existen ejemplos de una petición válida y de peticiones erróneas.\n\nEs necesario cambiar la variable 'url' por 'localhost:8001'",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "19860823"
 	},
 	"item": [
 		{
-			"name": "Petición necesaria para recibir el token de acceso",
+			"name": "Petición del token.",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -191,6 +192,82 @@
 					],
 					"cookie": [],
 					"body": ""
+				},
+				{
+					"name": "Petición del token - FALLO, usuario no econtrado.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"fail@email.com\",\n    \"password\":\"mercadona\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjYWRvbmFAZW1haWwuY29tIiwiZXhwIjoxNjczOTA5MjM3LCJuYW1lIjoiTWVyY2Fkb25hIn0.8ZnlR72Gf7xtOKHOxFT3Nx-A9cEze4WQUP9Vpf6mVwQ"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Jan 2023 15:13:57 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
 				}
 			]
 		},
@@ -223,7 +300,7 @@
 			"response": []
 		},
 		{
-			"name": "Búsqueda de producto por EAN",
+			"name": "Búsqueda de producto por EAN.",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -238,18 +315,148 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/getProduct/800000110002",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"getProduct",
-						"800000110002"
-					]
+					"raw": ""
 				},
 				"description": "Petición de búsqueda mediante el código EAN único de cada producto.\n\nEsta petición te muestra el código de proveedor, el código de producto, así como la localización de destino de dicho producto.\n\nSerá necesario adjuntar el token obtenido anteriormente en el apartado 'Authorization', seleccionando 'Bearer Token' en el campo 'Type'"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Búsqueda de producto por EAN - EXITO.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/getProduct/800000110002",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"getProduct",
+								"800000110002"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Jan 2023 15:15:36 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"Detergente\",\n    \"description\": \"Jabón para la ropa\",\n    \"price\": 12.2,\n    \"supplier\": 8000001,\n    \"destination\": \"Mercadona España\",\n    \"productCode\": 1000,\n    \"ean\": 800000110002\n}"
+				},
+				{
+					"name": "Búsqueda de producto por EAN - FALLO, EAN no existe.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/getProduct/802000110002",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"getProduct",
+								"802000110002"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Jan 2023 15:15:36 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"Detergente\",\n    \"description\": \"Jabón para la ropa\",\n    \"price\": 12.2,\n    \"supplier\": 8000001,\n    \"destination\": \"Mercadona España\",\n    \"productCode\": 1000,\n    \"ean\": 800000110002\n}"
+				}
+			]
 		},
 		{
 			"name": "Listado de los usuarios",
@@ -296,7 +503,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Tijeras\",\r\n    \"description\":\"Tijeras de podar\",\r\n    \"EAN\":\"800000810109\",\r\n    \"price\":\"25.70\"    \r\n}",
+					"raw": "{\r\n    \"name\": \"Jamón\",\r\n    \"description\": \"Jamón 5 jotas\",\r\n    \"price\": 10.0,    \r\n    \"ean\": 8000001100001  \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -314,7 +521,105 @@
 				},
 				"description": "Petición para crear un producto mediante sus atributos en formato JSON.\n\nSerá necesario adjuntar el token obtenido anteriormente en el apartado 'Authorization', seleccionando 'Bearer Token' en el campo 'Type'"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Creación de un producto - EXITO.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Tijeras\",\r\n    \"description\":\"Tijeras de podar\",\r\n    \"EAN\":\"800000810109\",\r\n    \"price\":\"25.70\"    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/createProduct",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"createProduct"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Jan 2023 15:15:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Creación de un producto - FALLO, producto ya existente.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Jamón\",\r\n    \"description\": \"Jamón 5 jotas\",\r\n    \"price\": 10.0,    \r\n    \"ean\": 8000001100001  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/createProduct",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"createProduct"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "Edición de un producto",
@@ -333,7 +638,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Tijeras romas\",\r\n    \"description\": \"Tijeras para podar setos\",\r\n    \"price\": \"30.50\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Tijeras romas\",\r\n    \"description\": \"Tijeras para podar setos\",\r\n    \"price\": \"30.50\",\r\n    \"EAN\": \"8000001100009\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -341,20 +646,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/editPropduct/1",
+					"raw": "{{url}}/editProduct",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"editPropduct",
-						"1"
+						"editProduct"
 					]
 				},
 				"description": "Petición para editar un producto ya existente mediante ciertos atributos en formato JSON.\n\nSerá necesario adjuntar el token obtenido anteriormente en el apartado 'Authorization', seleccionando 'Bearer Token' en el campo 'Type'."
 			},
 			"response": [
 				{
-					"name": "Edición de un producto",
+					"name": "Edición de un producto - EXITO.",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [
@@ -367,7 +671,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Tijeras romas\",\r\n    \"description\":\"Tijeras para podar setos\",\r\n    \"price\":\"30.50\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Tijeras romas\",\r\n    \"description\": \"Tijeras para podar setos\",\r\n    \"price\": \"30.50\",\r\n    \"EAN\":\"8000001100001\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -375,13 +679,41 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/editPropduct/1",
+							"raw": "{{url}}/editProduct",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"editPropduct",
-								"1"
+								"editProduct"
+							]
+						}
+					},
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Edición de un producto - FALLO, campo erróneo.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tijeras romas\",\r\n    \"description\": \"Tijeras para podar setos\",\r\n    \"price\": \"30.50\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/editProduct",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"editProduct"
 							]
 						}
 					},
@@ -395,11 +727,74 @@
 		{
 			"name": "Eliminación de un producto",
 			"request": {
-				"method": "GET",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjYWRvbmFAZW1haWwuY29tIiwiZXhwIjoxNjczODUzNTgxLCJuYW1lIjoiTWVyY2Fkb25hIn0.bPyEPbndTCgtoWG0XAADKCl1HwGT8v5X6BkmVklsFaM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
 				"header": [],
+				"url": {
+					"raw": "{{url}}/deleteProduct/8000001100001",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"deleteProduct",
+						"8000001100001"
+					]
+				},
 				"description": "Petición de borrado de un producto existente mediante el código EAN.\n\nSerá necesario adjuntar el token obtenido anteriormente en el apartado 'Authorization', seleccionando 'Bearer Token' en el campo 'Type'"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Eliminación de un producto - EXITO.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/deleteProduct/8000001100001",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"deleteProduct",
+								"8000001100001"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Eliminación de un producto - FALLO, producto no existe.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/deleteProduct/8000001100001",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"deleteProduct",
+								"8000001100001"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		}
 	],
 	"event": [
