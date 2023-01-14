@@ -6,6 +6,17 @@ import com.merca.project.mercaproject.model.MyProduct;
 
 
 public class ProductMapper {
+
+    public enum SupplierType{
+        HACENDADO, OTHERS
+    }
+
+    public static String getSupplierType(Long supplier){
+        if(supplier == 8437008){
+            return SupplierType.HACENDADO.toString();
+        }
+        return SupplierType.OTHERS.toString();
+    }
     public static ProductEntity toEntity(MyProduct myProduct) {
 
         ProductEntity myProductEntity = new ProductEntity();
@@ -23,7 +34,7 @@ public class ProductMapper {
                 productEntity.getDescription(),
                 productEntity.getEAN(),
                 productEntity.getPrice(),
-                takeSupplier(productEntity.getEAN()),
+                getSupplierType(takeSupplier(productEntity.getEAN())),
                 calculateDestination(takeDestination(productEntity.getEAN())),
                 takeProductCode(productEntity.getEAN()));
     }

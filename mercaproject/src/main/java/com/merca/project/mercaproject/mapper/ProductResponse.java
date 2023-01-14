@@ -13,7 +13,7 @@ public class ProductResponse {
     private String description;
     private Long EAN;
     private Double price;
-    private Long supplier;
+    private String supplier;
     private String destination;
     private Long productCode;
 }
