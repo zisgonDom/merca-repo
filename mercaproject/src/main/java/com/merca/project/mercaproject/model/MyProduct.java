@@ -1,9 +1,6 @@
 package com.merca.project.mercaproject.model;
 
-import com.merca.project.mercaproject.exceptions.EmptyDescriptionException;
-import com.merca.project.mercaproject.exceptions.ProductEANException;
-import com.merca.project.mercaproject.exceptions.ProductIsNullException;
-import com.merca.project.mercaproject.exceptions.ShortEANException;
+import com.merca.project.mercaproject.exceptions.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -63,25 +60,25 @@ public class MyProduct {
         }
 
 
-        public MyProduct build() throws EmptyDescriptionException, ProductEANException, ShortEANException {
+        public MyProduct build() throws DescriptionException, ShortEANException {
             //Validate
             if(this.product == null){
                 throw new ProductIsNullException();
             }
             if(this.product.description == null || this.product.description.equals("")){
-                throw new EmptyDescriptionException();
+                throw new DescriptionException("Description field is null or is empty");
             }
             if(this.product.EAN == null) {
-                throw new ProductEANException();
+                throw new EANException("EAN field is null");
             }
 
             String EAN = this.product.EAN.toString();
 
             if(EAN.toCharArray().length < 12) {
-                throw new ShortEANException();
+                throw new EANException("EAN field does not have 12 digits");
             }
             if(this.product.destination > 9 || this.product.destination == 0){
-
+                throw new EANException("Destination field is not valid");
             }
             return product;
         }

@@ -1,14 +1,8 @@
 package com.merca.project.mercaproject.mapper;
 
 import com.merca.project.mercaproject.entity.ProductEntity;
-import com.merca.project.mercaproject.exceptions.EmptyDescriptionException;
-import com.merca.project.mercaproject.exceptions.ProductEANException;
-import com.merca.project.mercaproject.exceptions.ShortEANException;
+import com.merca.project.mercaproject.exceptions.DescriptionException;
 import com.merca.project.mercaproject.model.MyProduct;
-
-import java.util.List;
-
-import static com.merca.project.mercaproject.mapper.ProductMapper.takeDestination;
 
 
 public class ProductMapper {
@@ -34,7 +28,7 @@ public class ProductMapper {
                 takeProductCode(productEntity.getEAN()));
     }
 
-    public static MyProduct toMyProduct(ProductCreate productCreate) throws ProductEANException, EmptyDescriptionException, ShortEANException {
+    public static MyProduct toMyProduct(ProductCreate productCreate) throws ProductEANException, DescriptionException, ShortEANException {
         return new MyProduct.MyProductBuilder()
                 .withDescription(productCreate.getDescription())
                 .withEAN(productCreate.getEAN())
