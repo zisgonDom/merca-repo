@@ -3,7 +3,7 @@
 #Proyecto Gradle
 #Para ejecutar este proyecto deberá importarse en su IDE.
 
-#Está configurado para el servidor interno se ponga en marcha desde el puerto 8001.
+#Está configurado para que el servidor interno se ponga en marcha desde el puerto 8001.
 #En caso de que dicho puerto este ocupado, se puede editar dicha configuración entrando en el fichero 'application.propperties' y cambiando las lineas dictadas a continuación:
     - server.port=8001
  #cambiar por el puerto deseado.
